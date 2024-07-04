@@ -38,6 +38,8 @@ func main() {
 	case <-time.After(3 * time.Second):
 		fmt.Println("timeout 2")
 	}
-fmt.Println("done"
-)
+fmt.Println("done")
+fmt.Println( "happy coding")
+	\
+
 }
