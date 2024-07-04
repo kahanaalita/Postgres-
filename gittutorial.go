@@ -39,7 +39,7 @@ func main() {
 		fmt.Println("timeout 2")
 	}
 fmt.Println("done")
-fmt.Println( "happy coding")
+fmt.Println( "happy dodding")
 	\
 
 }
