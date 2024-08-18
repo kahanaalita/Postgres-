@@ -94,17 +94,17 @@
 
 ### Основные команды PostgreSQL
 
-#### 1. Создание базы данных
+1. Создание базы данных
 -- Создание новой базы данных
 CREATE DATABASE mydatabase;
 ```
 
-#### 2. Удаление базы данных
+ 2. Удаление базы данных
 -- Удаление существующей базы данных
 DROP DATABASE mydatabase;
 ```
 
-#### 3. Создание таблицы
+ 3. Создание таблицы
 -- Создание таблицы с несколькими столбцами
 CREATE TABLE employees (
     employee_id SERIAL PRIMARY KEY,
@@ -115,12 +115,12 @@ CREATE TABLE employees (
 );
 ```
 
-#### 4. Удаление таблицы
+4. Удаление таблицы
 -- Удаление существующей таблицы
 DROP TABLE employees;
 ```
 
-#### 5. Вставка данных
+ 5. Вставка данных
 -- Вставка одной строки данных
 INSERT INTO employees (first_name, last_name, birth_date, hire_date)
 VALUES ('John', 'Doe', '1980-01-01', '2020-01-01');
@@ -132,20 +132,20 @@ VALUES
 ('Alice', 'Smith', '1990-03-03', '2020-03-03');
 ```
 
-#### 6. Обновление данных
+ 6. Обновление данных
 -- Обновление данных в таблице
 UPDATE employees
 SET first_name = 'Johnny'
 WHERE employee_id = 1;
 ```
 
-#### 7. Удаление данных
+7. Удаление данных
 -- Удаление строки данных из таблицы
 DELETE FROM employees
 WHERE employee_id = 1;
 ```
 
-#### 8. Выборка данных
+8. Выборка данных
 -- Выборка всех данных из таблицы
 SELECT * FROM employees;
 
@@ -185,18 +185,18 @@ SELECT DISTINCT Manufacturer FROM Products;
 		            ELSE 2
 		        END;
 
-#### 9. Создание индекса
+9. Создание индекса
 -- Создание индекса на столбец
 CREATE INDEX idx_employees_last_name
 ON employees (last_name);
 ```
 
-#### 10. Удаление индекса
+10. Удаление индекса
 -- Удаление существующего индекса
 DROP INDEX idx_employees_last_name;
 ```
 
-#### 11. Создание ограничений
+11. Создание ограничений
 -- Создание первичного ключа
 ALTER TABLE employees
 ADD CONSTRAINT pk_employees PRIMARY KEY (employee_id);
@@ -215,7 +215,7 @@ ADD CONSTRAINT fk_employees_departments
 FOREIGN KEY (department_id) REFERENCES departments(department_id);
 ```
 
-#### 12. Удаление ограничений
+12. Удаление ограничений
 -- Удаление первичного ключа
 ALTER TABLE employees
 DROP CONSTRAINT pk_employees;
@@ -225,7 +225,7 @@ ALTER TABLE employees
 DROP CONSTRAINT fk_employees_departments;
 ```
 
-#### 13. Группировка и агрегатные функции
+13. Группировка и агрегатные функции
 -- Группировка данных и подсчет количества сотрудников в каждом департаменте
 SELECT department_id, COUNT(*) AS employee_count
 FROM employees
@@ -236,13 +236,13 @@ SELECT MAX(hire_date) AS latest_hire_date, MIN(hire_date) AS earliest_hire_date
 FROM employees;
 ```
 
-#### 14. Подзапросы
+14. Подзапросы
 -- Использование подзапроса для выборки данных
 SELECT * FROM employees
 WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'Sales');
 ```
 
-#### 15. Объединение таблиц
+15. Объединение таблиц
 -- Внутреннее объединение таблиц
 SELECT employees.first_name, employees.last_name, departments.department_name
 FROM employees
@@ -254,7 +254,7 @@ FROM employees
 LEFT JOIN departments ON employees.department_id = departments.department_id;
 ```
 
-#### 16. Транзакции
+16. Транзакции
 -- Начало транзакции
 BEGIN;
 
@@ -270,7 +270,7 @@ COMMIT;
 ROLLBACK;
 ```
 
-#### 17. Пользователи и роли
+17. Пользователи и роли
 -- Создание нового пользователя
 CREATE USER myuser WITH PASSWORD 'mypassword';
 
@@ -290,7 +290,7 @@ DROP USER myuser;
 DROP ROLE myrole;
 ```
 
-#### 18. Резервное копирование и восстановление
+18. Резервное копирование и восстановление
 # Резервное копирование базы данных
 pg_dump mydatabase > mydatabase_backup.sql
 
@@ -298,7 +298,7 @@ pg_dump mydatabase > mydatabase_backup.sql
 psql mydatabase < mydatabase_backup.sql
 ```
 
-#### 19. Настройка параметров
+19. Настройка параметров
 -- Просмотр текущих параметров
 SHOW all;
 
@@ -309,7 +309,7 @@ ALTER SYSTEM SET work_mem = '64MB';
 SELECT pg_reload_conf();
 ```
 
-#### 20. Работа с датами и временем
+20. Работа с датами и временем
 -- Выборка текущей даты и времени
 SELECT NOW();
 
@@ -328,7 +328,7 @@ SELECT AGE('2020-01-01', '2019-01-01');
 
 ### Основные команды Go для работы с PostgreSQL (pgx)
 
-#### 1. Установка и подключение к базе данных
+1. Установка и подключение к базе данных
 import (
     "context"
     "log"
@@ -349,7 +349,7 @@ func main() {
     defer db.Close()
 }
 
-#### 2. Создание базы данных
+2. Создание базы данных
 func createDatabase(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, "CREATE DATABASE mydatabase")
     if err != nil {
@@ -357,7 +357,7 @@ func createDatabase(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 3. Удаление базы данных
+3. Удаление базы данных
 func dropDatabase(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, "DROP DATABASE mydatabase")
     if err != nil {
@@ -365,7 +365,7 @@ func dropDatabase(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 4. Создание таблицы
+4. Создание таблицы
 func createTable(db *pgxpool.Pool, ctx context.Context) {
     query := `
     CREATE TABLE employees (
@@ -381,7 +381,7 @@ func createTable(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 5. Удаление таблицы
+5. Удаление таблицы
 func dropTable(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, "DROP TABLE employees")
     if err != nil {
@@ -390,7 +390,7 @@ func dropTable(db *pgxpool.Pool, ctx context.Context) {
 }
 ```
 
-#### 6. Вставка данных в таблицу
+6. Вставка данных в таблицу
 func insertData(db *pgxpool.Pool, ctx context.Context) {
     query := `
     INSERT INTO employees (first_name, last_name, birth_date, hire_date)
@@ -403,7 +403,7 @@ func insertData(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 7. Обновление данных в таблице
+ 7. Обновление данных в таблице
 func updateData(db *pgxpool.Pool, ctx context.Context) {
     query := `
     UPDATE employees
@@ -415,7 +415,7 @@ func updateData(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 8. Удаление данных из таблицы
+8. Удаление данных из таблицы
 func deleteData(db *pgxpool.Pool, ctx context.Context) {
     query := `
     DELETE FROM employees
@@ -426,7 +426,7 @@ func deleteData(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 9. Выборка данных из таблицы
+9. Выборка данных из таблицы
 func selectData(db *pgxpool.Pool, ctx context.Context) {
     rows, err := db.Query(ctx, "SELECT * FROM employees")
     if err != nil {
@@ -450,7 +450,7 @@ func selectData(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 10. Добавление нового столбца
+10. Добавление нового столбца
 func addColumn(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, `ALTER TABLE employees ADD COLUMN phone VARCHAR(20) NULL`)
     if err != nil {
@@ -459,7 +459,7 @@ func addColumn(db *pgxpool.Pool, ctx context.Context) {
 }
 ```
 
-#### 11. Удаление столбца
+11. Удаление столбца
 func dropColumn(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, `ALTER TABLE employees DROP COLUMN address`)
     if err != nil {
@@ -467,7 +467,7 @@ func dropColumn(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 12. Изменение типа столбца
+12. Изменение типа столбца
 func alterColumnType(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, `ALTER TABLE employees ALTER COLUMN first_name TYPE VARCHAR(50)`)
     if err != nil {
@@ -475,7 +475,7 @@ func alterColumnType(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 13. Изменение ограничений столбца
+13. Изменение ограничений столбца
 func alterColumnConstraint(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, `ALTER TABLE employees ALTER COLUMN first_name SET NOT NULL`)
     if err != nil {
@@ -488,7 +488,7 @@ func alterColumnConstraint(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 14. Изменение ограничений таблицы
+14. Изменение ограничений таблицы
 func alterTableConstraint(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, `ALTER TABLE employees ADD CHECK (age > 0)`)
     if err != nil {
@@ -517,7 +517,7 @@ func alterTableConstraint(db *pgxpool.Pool, ctx context.Context) {
 }
 ```
 
-#### 15. Переименование столбца и таблицы
+15. Переименование столбца и таблицы
 func renameColumnAndTable(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, `ALTER TABLE employees RENAME COLUMN address TO city`)
     if err != nil {
@@ -530,7 +530,7 @@ func renameColumnAndTable(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 16. Создание индекса
+16. Создание индекса
 func createIndex(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, "CREATE INDEX idx_employees_last_name ON employees (last_name)")
     if err != nil {
@@ -538,7 +538,7 @@ func createIndex(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 17. Удаление индекса
+ 17. Удаление индекса
 func dropIndex(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, "DROP INDEX idx_employees_last_name")
     if err != nil {
@@ -546,7 +546,7 @@ func dropIndex(db *pgxpool.Pool, ctx context.Context) {
     }
 }
 
-#### 18. Создание и удаление ограничений (Constraints)
+18. Создание и удаление ограничений (Constraints)
 func addPrimaryKey(db *pgxpool.Pool, ctx context.Context) {
     _, err := db.Exec(ctx, "ALTER TABLE employees ADD CONSTRAINT pk_employees PRIMARY KEY (employee_id)")
     if err != nil {
